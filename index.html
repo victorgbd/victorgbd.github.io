@@ -359,7 +359,8 @@
             camera.position.z = 5;
 
             // Variables para la rotación
-            const  targetAngle = Math.PI / 4; // 45 grados
+            let targetAngle = 0;
+            const stepAngle = Math.PI / 4; // 45 grados
             let currentAngle = 0;
 
             // Función para rotar el cubo
