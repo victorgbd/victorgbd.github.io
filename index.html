@@ -18,9 +18,17 @@
             .bg-theme2 {
                 background-color: #086AD8;
             }
-            #miDiv { width: 100vw; height: 100vh; }
-            .controls { position: absolute; top: 10px; left: 10px; z-index: 1; }
-            button { margin: 5px; } 
+            #miDiv { position: relative; width: 100vw; height: 100vh; }
+            .controls {
+                position: absolute;
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 1;
+                display: flex;
+                flex-direction: row;
+            }
+            button { margin: 5px; }
         </style>
     </head>
     <body>
