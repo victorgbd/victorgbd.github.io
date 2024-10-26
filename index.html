@@ -348,49 +348,51 @@
                 document.getElementById('miDiv').appendChild(renderer.domElement);
 
                 const textureLoader = new THREE.TextureLoader();
-                const texture = textureLoader.load('assets/img/images.jpg'); // Reemplaza con la ruta de tu imagen
                 
-                // Crear materiales
-                const materiales = [
-                    new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // Cara 1: color verde
-                    new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // Cara 2: color verde
-                    new THREE.MeshBasicMaterial({ color: 0xff0000 }), // Cara 3: color rojo
-                    new THREE.MeshBasicMaterial({ color: 0x0000ff }), // Cara 4: color azul
-                    new THREE.MeshBasicMaterial({ color: 0xffff00 }), // Cara 5: color amarillo
-                    // new THREE.MeshBasicMaterial({ color: 0x0000ff })  // Cara 6: color negro
-                    texture
-                ];
-                
-                const geometry = new THREE.BoxGeometry();
-                const cubo = new THREE.Mesh(geometry, materiales);
-                escena.add(cubo);
-                
-                camera.position.z = 5;
+                // Cargar la textura
+                textureLoader.load('assets/img/images.jpg', (texture) => {
+                    // Crear materiales una vez que la textura está cargada
+                    const materiales = [
+                        new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // Cara 1: color verde
+                        new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // Cara 2: color verde
+                        new THREE.MeshBasicMaterial({ color: 0xff0000 }), // Cara 3: color rojo
+                        new THREE.MeshBasicMaterial({ color: 0x0000ff }), // Cara 4: color azul
+                        new THREE.MeshBasicMaterial({ color: 0xffff00 }), // Cara 5: color amarillo
+                        new THREE.MeshBasicMaterial({ map: texture }) // Cara 6: textura
+                    ];
+                    
+                    const geometry = new THREE.BoxGeometry();
+                    const cubo = new THREE.Mesh(geometry, materiales);
+                    escena.add(cubo);
+                    
+                    camera.position.z = 5;
 
-                let targetAngle = 0; // Inicializar el ángulo objetivo
-                const stepAngle = Math.PI / 4; // 45 grados
+                    let targetAngle = 0; // Inicializar el ángulo objetivo
+                    const stepAngle = Math.PI / 4; // 45 grados
 
-                function rotateCube(direction) {
-                    targetAngle += direction * stepAngle; // Actualizar el ángulo objetivo
-                }
+                    function rotateCube(direction) {
+                        targetAngle += direction * stepAngle; // Actualizar el ángulo objetivo
+                    }
 
-                function animate() {
-                    cubo.rotation.y = THREE.MathUtils.lerp(cubo.rotation.y, targetAngle, 0.1);
-                    renderer.render(escena, camera);
-                    requestAnimationFrame(animate);
-                }
+                    function animate() {
+                        cubo.rotation.y = THREE.MathUtils.lerp(cubo.rotation.y, targetAngle, 0.1);
+                        renderer.render(escena, camera);
+                        requestAnimationFrame(animate);
+                    }
 
-                animate();
+                    animate();
 
-                window.addEventListener('resize', () => {
-                    camera.aspect = window.innerWidth / window.innerHeight;
-                    camera.updateProjectionMatrix();
-                    renderer.setSize(window.innerWidth, window.innerHeight);
+                    window.addEventListener('resize', () => {
+                        camera.aspect = window.innerWidth / window.innerHeight;
+                        camera.updateProjectionMatrix();
+                        renderer.setSize(window.innerWidth, window.innerHeight);
+                    });
+
+                    document.getElementById('rotateLeft').addEventListener('click', () => rotateCube(-1));
+                    document.getElementById('rotateRight').addEventListener('click', () => rotateCube(1));
                 });
-
-                document.getElementById('rotateLeft').addEventListener('click', () => rotateCube(-1));
-                document.getElementById('rotateRight').addEventListener('click', () => rotateCube(1));
             });
+
         </script>
         
 
