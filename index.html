@@ -23,46 +23,7 @@
     </head>
     <body>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-        <script>
-             // Crear la escena, la cámara y el renderizador
-            const escena = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer();
-            
-            // Ajustar el tamaño del renderizador al div
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            document.getElementById('miDiv').appendChild(renderer.domElement);
         
-            // Crear un cubo
-            const geometry = new THREE.BoxGeometry();
-            const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-            const cubo = new THREE.Mesh(geometry, material);
-            escena.add(cubo);
-        
-            // Posicionar la cámara
-            camera.position.z = 5;
-        
-            // Función de animación
-            function animate() {
-                requestAnimationFrame(animate);
-        
-                // Rotar el cubo
-                cubo.rotation.x += 0.01;
-                cubo.rotation.y += 0.01;  // Puedes descomentar esta línea para que el cubo también rote en Y
-        
-                renderer.render(escena, camera);
-            }
-        
-            // Iniciar la animación
-            animate();
-        
-            // Ajustar el tamaño del renderizador cuando se cambia el tamaño de la ventana
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
-        </script>
         <!-- Top Header  -->
         <div class="top-bar-area inc-pad bg-theme2 text-light">
             <div class="container">
@@ -361,6 +322,46 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+        <script>
+            // Crear la escena, la cámara y el renderizador
+           const escena = new THREE.Scene();
+           const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+           const renderer = new THREE.WebGLRenderer();
+           
+           // Ajustar el tamaño del renderizador al div
+           renderer.setSize(window.innerWidth, window.innerHeight);
+           document.getElementById('miDiv').appendChild(renderer.domElement);
+       
+           // Crear un cubo
+           const geometry = new THREE.BoxGeometry();
+           const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+           const cubo = new THREE.Mesh(geometry, material);
+           escena.add(cubo);
+       
+           // Posicionar la cámara
+           camera.position.z = 5;
+       
+           // Función de animación
+           function animate() {
+               requestAnimationFrame(animate);
+       
+               // Rotar el cubo
+               cubo.rotation.x += 0.01;
+               cubo.rotation.y += 0.01;  // Puedes descomentar esta línea para que el cubo también rote en Y
+       
+               renderer.render(escena, camera);
+           }
+       
+           // Iniciar la animación
+           animate();
+       
+           // Ajustar el tamaño del renderizador cuando se cambia el tamaño de la ventana
+           window.addEventListener('resize', () => {
+               camera.aspect = window.innerWidth / window.innerHeight;
+               camera.updateProjectionMatrix();
+               renderer.setSize(window.innerWidth, window.innerHeight);
+           });
+       </script>
 
     </body>
 </html>
