@@ -339,47 +339,60 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
         <script>
-           document.addEventListener('DOMContentLoaded', () => {
-            const escena = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer();
-
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            document.getElementById('miDiv').appendChild(renderer.domElement);
-
-            const geometry = new THREE.BoxGeometry();
-            const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-            const cubo = new THREE.Mesh(geometry, material);
-            escena.add(cubo);
-
-            camera.position.z = 5;
-
-            let targetAngle = 0; // Inicializar el ángulo objetivo
-            const stepAngle = Math.PI / 4; // 45 grados
-
-            function rotateCube(direction) {
-                targetAngle += direction * stepAngle; // Actualizar el ángulo objetivo
-            }
-
-            function animate() {
-                // Interpolar suavemente la rotación hacia el ángulo objetivo
-                cubo.rotation.y = THREE.MathUtils.lerp(cubo.rotation.y, targetAngle, 0.1);
-                renderer.render(escena, camera);
-                requestAnimationFrame(animate);
-            }
-
-            animate();
-
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
+            document.addEventListener('DOMContentLoaded', () => {
+                const escena = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer();
+        
                 renderer.setSize(window.innerWidth, window.innerHeight);
+                document.getElementById('miDiv').appendChild(renderer.domElement);
+        
+                // Cargar la textura
+                const textureLoader = new THREE.TextureLoader();
+                const texture = textureLoader.load('ruta/a/tu-imagen.jpg'); // Reemplaza con la ruta de tu imagen
+        
+                // Crear materiales
+                const materiales = [
+                    new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // Cara 1: color verde
+                    new THREE.MeshBasicMaterial({ color: 0xff0000 }), // Cara 2: color rojo
+                    new THREE.MeshBasicMaterial({ color: 0x0000ff }), // Cara 3: color azul
+                    new THREE.MeshBasicMaterial({ color: 0xffff00 }), // Cara 4: color amarillo
+                    texture, // Cara 5: imagen
+                    new THREE.MeshBasicMaterial({ color: 0x000000 })  // Cara 6: color negro
+                ];
+        
+                const geometry = new THREE.BoxGeometry();
+                const cubo = new THREE.Mesh(geometry, materiales);
+                escena.add(cubo);
+        
+                camera.position.z = 5;
+        
+                let targetAngle = 0; // Inicializar el ángulo objetivo
+                const stepAngle = Math.PI / 4; // 45 grados
+        
+                function rotateCube(direction) {
+                    targetAngle += direction * stepAngle; // Actualizar el ángulo objetivo
+                }
+        
+                function animate() {
+                    cubo.rotation.y = THREE.MathUtils.lerp(cubo.rotation.y, targetAngle, 0.1);
+                    renderer.render(escena, camera);
+                    requestAnimationFrame(animate);
+                }
+        
+                animate();
+        
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+        
+                document.getElementById('rotateLeft').addEventListener('click', () => rotateCube(-1));
+                document.getElementById('rotateRight').addEventListener('click', () => rotateCube(1));
             });
-
-            document.getElementById('rotateLeft').addEventListener('click', () => rotateCube(-1));
-            document.getElementById('rotateRight').addEventListener('click', () => rotateCube(1));
-        });
-       </script>
+        </script>
+        
 
     </body>
 </html>
