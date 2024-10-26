@@ -346,6 +346,9 @@
                 
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 document.getElementById('miDiv').appendChild(renderer.domElement);
+
+                const textureLoader = new THREE.TextureLoader();
+                const texture = textureLoader.load('assets/img/images.jpg'); // Reemplaza con la ruta de tu imagen
                 
                 // Crear materiales
                 const materiales = [
@@ -354,7 +357,8 @@
                     new THREE.MeshBasicMaterial({ color: 0xff0000 }), // Cara 3: color rojo
                     new THREE.MeshBasicMaterial({ color: 0x0000ff }), // Cara 4: color azul
                     new THREE.MeshBasicMaterial({ color: 0xffff00 }), // Cara 5: color amarillo
-                    new THREE.MeshBasicMaterial({ color: 0x0000ff })  // Cara 6: color negro
+                    // new THREE.MeshBasicMaterial({ color: 0x0000ff })  // Cara 6: color negro
+                    texture
                 ];
                 
                 const geometry = new THREE.BoxGeometry();
