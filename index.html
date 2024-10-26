@@ -356,8 +356,16 @@
 
             // Función para rotar el cubo
             function rotateCube(direction) {
-                currentAngle += direction * stepAngle;
-                cubo.rotation.y = currentAngle;
+                targetAngle += direction * stepAngle;
+            }
+        
+            // Función de animación
+            function animate() {
+                // Interpolar entre la rotación actual y la rotación objetivo
+                cubo.rotation.y = THREE.MathUtils.lerp(cubo.rotation.y, targetAngle, 0.1);
+                
+                renderer.render(escena, camera);
+                requestAnimationFrame(animate);
             }
         
             // Función de animación
