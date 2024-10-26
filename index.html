@@ -19,6 +19,8 @@
                 background-color: #086AD8;
             }
             #miDiv { width: 100vw; height: 100vh; }
+            .controls { position: absolute; top: 10px; left: 10px; z-index: 1; }
+            button { margin: 5px; } 
         </style>
     </head>
     <body>
@@ -103,6 +105,10 @@
             </div>
         </nav>
         <div id="miDiv"></div>
+        <div class="controls">
+            <button id="rotateLeft">Izquierda</button>
+            <button id="rotateRight">Derecha</button>
+        </div>
         <!-- Masthead-->
         <header class="masthead">
             <div class="container position-relative">
@@ -323,44 +329,55 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
         <script>
+            document.addEventListener('DOMContentLoaded', () => {
             // Crear la escena, la cámara y el renderizador
-           const escena = new THREE.Scene();
-           const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-           const renderer = new THREE.WebGLRenderer();
-           
-           // Ajustar el tamaño del renderizador al div
-           renderer.setSize(window.innerWidth, window.innerHeight);
-           document.getElementById('miDiv').appendChild(renderer.domElement);
-       
-           // Crear un cubo
-           const geometry = new THREE.BoxGeometry();
-           const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-           const cubo = new THREE.Mesh(geometry, material);
-           escena.add(cubo);
-       
-           // Posicionar la cámara
-           camera.position.z = 5;
-       
-           // Función de animación
-           function animate() {
-               requestAnimationFrame(animate);
-       
-               // Rotar el cubo
-            //    cubo.rotation.x += 0.01;
-               cubo.rotation.y += 0.01;  // Puedes descomentar esta línea para que el cubo también rote en Y
-       
-               renderer.render(escena, camera);
-           }
-       
-           // Iniciar la animación
-           animate();
-       
-           // Ajustar el tamaño del renderizador cuando se cambia el tamaño de la ventana
-           window.addEventListener('resize', () => {
-               camera.aspect = window.innerWidth / window.innerHeight;
-               camera.updateProjectionMatrix();
-               renderer.setSize(window.innerWidth, window.innerHeight);
-           });
+            const escena = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer();
+            
+            // Ajustar el tamaño del renderizador al div
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('miDiv').appendChild(renderer.domElement);
+        
+            // Crear un cubo
+            const geometry = new THREE.BoxGeometry();
+            const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+            const cubo = new THREE.Mesh(geometry, material);
+            escena.add(cubo);
+        
+            // Posicionar la cámara
+            camera.position.z = 5;
+
+            // Variables para la rotación
+            const stepAngle = Math.PI / 4; // 45 grados
+            let currentAngle = 0;
+
+            // Función para rotar el cubo
+            function rotateCube(direction) {
+                currentAngle += direction * stepAngle;
+                cubo.rotation.y = currentAngle;
+            }
+        
+            // Función de animación
+            function animate() {
+                renderer.render(escena, camera);
+                requestAnimationFrame(animate);
+            }
+        
+            // Iniciar la animación
+            animate();
+        
+            // Ajustar el tamaño del renderizador cuando se cambia el tamaño de la ventana
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            // Event listeners para los botones
+            document.getElementById('rotateLeft').addEventListener('click', () => rotateCube(-1));
+            document.getElementById('rotateRight').addEventListener('click', () => rotateCube(1));
+            });
        </script>
 
     </body>
