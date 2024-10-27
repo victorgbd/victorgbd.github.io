@@ -1,15 +1,11 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const escena = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     const container = document.getElementById('canva');
 
-    // Establece el tamaño inicial del renderizador
-    renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setClearColor(0xffffff);
     container.appendChild(renderer.domElement);
-    // document.body.appendChild(renderer.domElement);
 
     const textureLoader = new THREE.TextureLoader();
 
@@ -23,20 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
             new THREE.MeshBasicMaterial({ map: texture })
         ];
 
-        const geometry = new THREE.BoxGeometry(2, 4, 2); // Cambiar altura
-        const cubo = new THREE.Mesh(geometry, materiales);
+        const cubo = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), materiales); // Cubo inicial de 1x1x1
         escena.add(cubo);
 
         camera.position.z = 5;
 
         let targetAngle = 0;
-        const stepAngle = Math.PI / 2; // 90 grados para girar de cara a cara
+        const stepAngle = Math.PI / 2; // 90 grados
 
         function rotateCube(direction) {
             targetAngle += direction * stepAngle;
             targetAngle = Math.round(targetAngle / stepAngle) * stepAngle; // Asegura múltiplos de 90 grados
         }
-
 
         function resizeRendererToDisplaySize() {
             const width = container.clientWidth;
@@ -47,6 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderer.setSize(width, height);
                 camera.aspect = width / height;
                 camera.updateProjectionMatrix();
+
+                // Escalar el cubo según el tamaño del contenedor
+                const scaleFactor = Math.min(width, height) / 150; // Ajusta 200 según el tamaño deseado
+                cubo.scale.set(scaleFactor, scaleFactor, scaleFactor);
             }
         }
 
