@@ -17,6 +17,8 @@
         type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+
+    <script src="js/three_scene.js"></script>
     <style>
         .bg-theme2 {
             background-color: #086AD8;
@@ -125,22 +127,21 @@
     </nav>
     <!-- escena de three.js -->
     <div class="container mt-5" style="margin-bottom: 40px;">
-        <div class="card">
-            <div class="card-header">
-                Escena de Three.js en Card
+
+        <div class="card-body">
+            <div class="d-flex justify-content-center">
+                <div id="canva" class="col-12 col-md-8 mb-3" style="height: 450px;">
+                </div>
+                <!-- Ajuste de tamaño responsive -->
             </div>
-            <div class="card-body">
-                <div class="row justify-content-center">
-                    <div id="miDiv" class="col-12 col-md-8 mb-3" style="height: 400px;"></div>
-                    <!-- Ajuste de tamaño responsive -->
-                </div>
-                <div class="text-center">
-                    <button id="rotateLeft" class="btn btn-primary mt-3 mx-1">Rotar Izquierda</button>
-                    <button id="rotateRight" class="btn btn-primary mt-3 mx-1">Rotar Derecha</button>
-                </div>
+            <div class="text-center">
+                <button id="rotateLeft" class="btn btn-primary mt-3 mx-1">Rotar Izquierda</button>
+                <button id="rotateRight" class="btn btn-primary mt-3 mx-1">Rotar Derecha</button>
             </div>
         </div>
+
     </div>
+
 
 
     <!-- Masthead-->
@@ -387,97 +388,6 @@
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const escena = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer();
-            const container = document.getElementById('miDiv');
-
-            // Establece el tamaño inicial del renderizador
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            container.appendChild(renderer.domElement);
-
-            const textureLoader = new THREE.TextureLoader();
-
-            textureLoader.load('assets/img/images.jpg', (texture) => {
-                const materiales = [
-                    new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
-                    new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
-                    new THREE.MeshBasicMaterial({ color: 0xff0000 }),
-                    new THREE.MeshBasicMaterial({ color: 0x0000ff }),
-                    new THREE.MeshBasicMaterial({ color: 0xffff00 }),
-                    new THREE.MeshBasicMaterial({ map: texture })
-                ];
-
-                const geometry = new THREE.BoxGeometry(1, 2, 1); // Cambiar altura
-                const cubo = new THREE.Mesh(geometry, materiales);
-                escena.add(cubo);
-
-                camera.position.z = 5;
-
-                let targetAngle = 0;
-                const stepAngle = Math.PI / 2; // 90 grados para girar de cara a cara
-
-                function rotateCube(direction) {
-                    targetAngle += direction * stepAngle;
-                    targetAngle = Math.round(targetAngle / stepAngle) * stepAngle; // Asegura múltiplos de 90 grados
-                }
-
-                function resizeRendererToDisplaySize() {
-                    const width = container.clientWidth;
-                    const height = container.clientHeight;
-                    const needResize = renderer.domElement.width !== width || renderer.domElement.height !== height;
-
-                    if (needResize) {
-                        renderer.setSize(width, height);
-                        camera.aspect = width / height;
-                        camera.updateProjectionMatrix();
-                    }
-                }
-
-                function animate() {
-                    resizeRendererToDisplaySize(); // Verifica el tamaño del renderizador en cada fotograma
-                    cubo.rotation.y = THREE.MathUtils.lerp(cubo.rotation.y, targetAngle, 0.1);
-                    renderer.render(escena, camera);
-                    requestAnimationFrame(animate);
-                }
-
-                animate();
-
-                // Botones de rotación
-                document.getElementById('rotateLeft').addEventListener('click', () => rotateCube(-1));
-                document.getElementById('rotateRight').addEventListener('click', () => rotateCube(1));
-
-                // Variables para el swipe
-                let startX = 0;
-                let endX = 0;
-
-                container.addEventListener('touchstart', (event) => {
-                    startX = event.touches[0].clientX;
-                });
-
-                container.addEventListener('touchmove', (event) => {
-                    endX = event.touches[0].clientX;
-                });
-
-                container.addEventListener('touchend', () => {
-                    const deltaX = endX - startX;
-                    if (deltaX > 50) {
-                        rotateCube(1); // Swipe a la derecha
-                    } else if (deltaX < -50) {
-                        rotateCube(-1); // Swipe a la izquierda
-                    }
-                });
-            });
-        });
-
-        // function rotateCube(direction) {
-        //             targetAngle += direction * stepAngle;
-        //         }
-        //         document.getElementById('rotateLeft').addEventListener('click', () => rotateCube(-2));
-        //         document.getElementById('rotateRight').addEventListener('click', () => rotateCube(2));
-    </script>
 
 
 </body>
