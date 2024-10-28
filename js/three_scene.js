@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const textureLoader = new THREE.TextureLoader();
 
-    textureLoader.load('assets/img/images.jpg', (texture) => {
+    textureLoader.load('assets/img/ad.png', (texture) => {
         const materiales = [
             new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
             new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
