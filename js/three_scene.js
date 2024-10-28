@@ -58,14 +58,23 @@ document.addEventListener('DOMContentLoaded', () => {
         animate();
 
         // Botones de rotación
-        document.getElementById('rotateLeft').addEventListener('click', () => rotateCube(-1));
-        document.getElementById('rotateRight').addEventListener('click', () => rotateCube(1));
+        document.getElementById('rotateLeft').addEventListener('click', () => {
+            stopAutoRotate();
+            rotateCube(-1);
+            startAutoRotate();
+        });
+        document.getElementById('rotateRight').addEventListener('click', () => {
+            stopAutoRotate();
+            rotateCube(1);
+            startAutoRotate();
+        });
 
         // Variables para el swipe
         let startX = 0;
         let endX = 0;
 
         container.addEventListener('touchstart', (event) => {
+            stopAutoRotate();
             startX = event.touches[0].clientX;
         });
 
@@ -80,6 +89,20 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (deltaX < -50) {
                 rotateCube(-1); // Swipe a la izquierda
             }
+            startAutoRotate();
         });
+
+        // Configurar rotación automática cada 1 segundo
+        function startAutoRotate() {
+            autoRotateInterval = setInterval(() => {
+                rotateCube(1); // Gira 90 grados en el eje y
+            }, 3000);
+        }
+
+        function stopAutoRotate() {
+            clearInterval(autoRotateInterval);
+        }
+
+        startAutoRotate(); // Iniciar rotación automática al cargar
     });
 });
