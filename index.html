@@ -59,10 +59,16 @@
         }
 
         @media (max-width: 991px) {
-            .showcase-img, .showcase-img-right {
-                border-radius: 30px; /* Ajuste para móviles */
+            .showcase-img {
+                border-radius: 30px;
+                margin: 0; /* Asegúrate de que no haya margen aquí */
+            }
+
+            .showcase-img-wrapper {
+                padding: 0 15px; /* Espacio alrededor de las imágenes */
             }
         }
+
 
 
 
@@ -264,8 +270,9 @@
     <section class="showcase py-4">
         <div class="container-fluid p-0">
             <div class="row g-0">
-                <div class="col-lg-6 order-lg-2 text-white showcase-img"
-                    style="background-image: url('assets/img/bg-showcase-1.jpg');"></div>
+                <div class="col-lg-6 order-lg-2 text-white showcase-img-wrapper">
+                    <div class="showcase-img" style="background-image: url('assets/img/bg-showcase-1.jpg');"></div>
+                </div>
                 <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                     <h2>Fully Responsive Design</h2>
                     <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will
