@@ -49,17 +49,23 @@
             color: #ffffff; /* Cambia a tu color preferido */
         }
         .showcase-img {
-            border-top-left-radius: 30px; 
+            border-top-left-radius: 30px;
             border-bottom-left-radius: 30px;
         }
 
-        @media (max-width: 768px) { /* Ajusta el valor si es necesario */
-            .showcase-img {
-                border-radius: 15px; /* Cambia a 50% para un borde completamente redondeado */
-                margin-left: 10px; /* Margen a la izquierda */
-                margin-right: 10px; /* Margen a la derecha */
+        .showcase-img-right {
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .showcase-img, .showcase-img-right {
+                border-radius: 15px; /* Ajuste para móviles */
+                margin-left: 10px;
+                margin-right: 10px;
             }
         }
+
 
 
         button {
@@ -270,7 +276,7 @@
                 </div>
             </div>
             <div class="row g-0">
-                <div class="col-lg-6 text-white showcase-img"
+                <div class="col-lg-6 text-white showcase-img-right"
                     style="background-image: url('assets/img/bg-showcase-2.jpg'); border-top-right-radius: 30px; 
             border-bottom-right-radius: 30px;"></div>
                 <div class="col-lg-6 my-auto showcase-text">
