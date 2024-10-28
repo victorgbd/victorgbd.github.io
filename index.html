@@ -34,6 +34,15 @@
             flex-direction: row;
         }
 
+
+        .btn,
+        .btn:active,
+        .btn:focus,
+        .btn:hover {
+            border: none !important;
+
+        }
+
         button {
             margin: 5px;
         }
@@ -127,20 +136,26 @@
     </nav>
     <!-- escena de three.js -->
     <div class="container mt-5" style="margin-bottom: 40px;">
-
         <div class="card-body">
-            <div class="d-flex justify-content-center">
-                <div id="canva" class="col-12 col-md-8 mb-3" style="height: 450px;">
+            <div class="d-flex justify-content-center position-relative">
+                <div id="canva" class="col-12 col-md-8 mb-3" style="height: 450px; position: relative;">
                 </div>
-                <!-- Ajuste de tamaño responsive -->
-            </div>
-            <div class="text-center">
-                <button id="rotateLeft" class="btn btn-primary mt-3 mx-1">Rotar Izquierda</button>
-                <button id="rotateRight" class="btn btn-primary mt-3 mx-1">Rotar Derecha</button>
+                <div class="position-absolute d-none d-lg-flex"
+                    style="top: 50%; left: 50%; width: 100%; max-width: 60%; transform: translate(-50%, -50%); z-index: 10; justify-content: space-between;">
+                    <button id="rotateLeft" class="btn" style="border-radius: 50%; height: 75px; width: 75px;">
+                        <i class="bi bi-arrow-left-circle fs-2"></i>
+                    </button>
+                    <button id="rotateRight" class="btn" style="border-radius: 50%; height: 75px; width: 75px; ">
+                        <i class="bi bi-arrow-right-circle fs-2"></i>
+                    </button>
+                </div>
             </div>
         </div>
-
     </div>
+
+
+
+
 
 
 
