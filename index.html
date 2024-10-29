@@ -42,19 +42,25 @@
             border: none !important;
 
         }
+
         .custom-footer {
-            background-color: #343a40; /* Cambia el color aquí */
+            background-color: #343a40;
+            /* Cambia el color aquí */
         }
+
         .footer .list-inline-item a {
-            color: #ffffff; /* Cambia a tu color preferido */
+            color: #ffffff;
+            /* Cambia a tu color preferido */
         }
+
         .showcase-img {
             border-top-left-radius: 30px;
             border-bottom-left-radius: 30px;
-            overflow: hidden; /* Para asegurar que la imagen no sobresalga */
+            overflow: hidden;
+            /* Para asegurar que la imagen no sobresalga */
         }
 
-        .showcaseimg2 {
+        #showC.showcase-img {
             border-top-right-radius: 30px;
             border-bottom-right-radius: 30px;
             border-top-left-radius: 0px;
@@ -63,17 +69,15 @@
 
         @media (max-width: 991px) {
             .showcase-img {
-                border-radius: 30px;
-                margin: 0; /* Asegúrate de que no haya margen aquí */
+                border-radius: 30px !important;
+                margin: 0 !important;
             }
 
+            /* Aplica la clase rounded de Bootstrap */
             .showcase-img-wrapper {
-                padding: 0 20px; /* Espacio alrededor de las imágenes */
+                padding: 0 20px !important;
             }
         }
-
-
-
 
         button {
             margin: 5px;
@@ -284,10 +288,10 @@
                 </div>
             </div>
             <div class="row g-0">
-                    <div class="col-lg-6 text-white showcase-img-wrapper">
-                        <div class="showcase-img"
-                        style="background-image: url('assets/img/bg-showcase-2.jpg');"></div>
+                <div class="col-lg-6 text-white showcase-img-wrapper">
+                    <div id="showC" class="showcase-img" style="background-image: url('assets/img/bg-showcase-2.jpg');">
                     </div>
+                </div>
                 <div class="col-lg-6  my-auto showcase-text">
                     <h2>Updated For Bootstrap 5</h2>
                     <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 5 is leading the
@@ -337,7 +341,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Footer-->
     <footer class="footer custom-footer">
         <div class="container">
