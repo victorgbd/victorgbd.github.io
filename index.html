@@ -17,11 +17,9 @@
         type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.22.0/docxtemplater.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
     
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <script src="js/three_scene.js"></script>
@@ -98,38 +96,44 @@
    
 
     <script>
-        async function generarContrato() {
-        // Cargar la plantilla (debe ser un archivo .docx que ya contiene los marcadores de posición)
-        const response = await fetch('plantilla.docx'); // Asegúrate de tener la plantilla disponible
-        const arrayBuffer = await response.arrayBuffer();
-
-        // Crear una instancia de PizZip para leer la plantilla .docx
-        const zip = new JSZip();
-        const doc = new Docxtemplater(zip.load(arrayBuffer));
-
-        // Reemplazar los marcadores de posición con los datos del contrato
-        doc.setData({
-            nombre: "Juan Pérez",
-            fecha_inicio: "01 de diciembre de 2024",
-            salario: "1200 EUR",
-            puesto: "Desarrollador Web",
-            empresa_nombre: "Tech Solutions S.A."
-        });
-
-        try {
-            // Generar el documento con los datos reemplazados
-            doc.render();
-        } catch (error) {
-            console.error('Error al renderizar la plantilla:', error);
-            return;
+        function loadFile(url, callback) {
+            PizZipUtils.getBinaryContent(url, callback);
         }
+        window.generate = function generate() {
+            loadFile(
+                // the "template" example hosted by us
+                "https://docxtemplater.com/input.docx",
+                function (error, content) {
+                    if (error) {
+                        throw error;
+                    }
+                    const zip = new PizZip(content);
+                    const doc = new window.docxtemplater(zip, {
+                        paragraphLoop: true,
+                        linebreaks: true,
+                    });
 
-        // Obtener el archivo generado
-        const output = doc.getZip().generate({ type: "blob" });
+                    // Render the document (Replace {first_name} by John, {last_name} by Doe)
+                    doc.render({
+                        first_name: "John",
+                        last_name: "Doe",
+                        phone: "+33666666",
+                        description: "The Acme Product",
+                    });
 
-        // Guardar el archivo
-        saveAs(output, "Contrato_Empleado.docx");
-        }
+                    const blob = doc.getZip().generate({
+                        type: "blob",
+                        mimeType:
+                            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        // compression: DEFLATE adds a compression step.
+                        // For a 50MB output document, expect 500ms additional CPU time
+                        compression: "DEFLATE",
+                    });
+                    // Output the document using Data-URI
+                    saveAs(blob, "output.docx");
+                }
+            );
+        };
     </script>
     
 
@@ -423,6 +427,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.52.0/docxtemplater.js"></script>
+    <script src="https://unpkg.com/pizzip@3.1.7/dist/pizzip.js"></script>
+    <script src="https://unpkg.com/pizzip@3.1.7/dist/pizzip-utils.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
