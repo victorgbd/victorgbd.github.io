@@ -96,7 +96,7 @@
     <script>
         async function generarContrato() {
         // Cargar la plantilla (debe ser un archivo .docx que ya contiene los marcadores de posición)
-        const response = await fetch('plantilla_contrato.docx'); // Asegúrate de tener la plantilla disponible
+        const response = await fetch('plantilla.docx'); // Asegúrate de tener la plantilla disponible
         const arrayBuffer = await response.arrayBuffer();
 
         // Crear una instancia de PizZip para leer la plantilla .docx
