@@ -5,21 +5,18 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
-// Seleccionar el elemento
 const showcaseImg = document.getElementById('showC');
+    
+if (showcaseImg) {
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            console.log(entry.isIntersecting);  // Verifica si está entrando en el viewport
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
 
-// Crear un observador de intersección
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Cuando el elemento entra en el viewport, agregar la clase
-            entry.target.classList.add('is-visible');
-            // Dejar de observar el elemento una vez que la animación se haya ejecutado
-            observer.unobserve(entry.target);
-            console.log("ua bebecita")
-        }
-    });
-}, { threshold: 0.1 }); // Umbral de visibilidad (0.5 significa que el 50% del elemento debe ser visible)
-
-// Observar el elemento
-observer.observe(showcaseImg);
+    observer.observe(showcaseImg);
+}
