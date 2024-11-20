@@ -16,6 +16,7 @@ const observer = new IntersectionObserver((entries, observer) => {
             entry.target.classList.add('is-visible');
             // Dejar de observar el elemento una vez que la animación se haya ejecutado
             observer.unobserve(entry.target);
+            console.log("ua bebecita")
         }
     });
 }, { threshold: 0.5 }); // Umbral de visibilidad (0.5 significa que el 50% del elemento debe ser visible)
