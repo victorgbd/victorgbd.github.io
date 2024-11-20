@@ -19,7 +19,7 @@ const observer = new IntersectionObserver((entries, observer) => {
             console.log("ua bebecita")
         }
     });
-}, { threshold: 0.5 }); // Umbral de visibilidad (0.5 significa que el 50% del elemento debe ser visible)
+}, { threshold: 0.1 }); // Umbral de visibilidad (0.5 significa que el 50% del elemento debe ser visible)
 
 // Observar el elemento
 observer.observe(showcaseImg);
