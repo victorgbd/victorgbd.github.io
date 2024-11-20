@@ -33,13 +33,16 @@
     /* Cambia a tu color preferido */
 }
 
-.showcase-img {
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    overflow: hidden;
-    /* Para asegurar que la imagen no sobresalga */
-    animation: slideIn 1s ease-out forwards; /* Llamamos a la animación */
-}
+ .showcase-img {
+            width: 200px;
+            height: 200px;
+            background-color: #086AD8;
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            animation: slideIn 1s ease-out forwards; /* Animación */
+        }
 
 /* La animación slideIn se moverá desde la izquierda hacia su posición original */
 @keyframes slideIn {
