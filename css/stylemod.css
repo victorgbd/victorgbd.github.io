@@ -40,23 +40,17 @@
             
         }
 
-/* La animación slideIn se moverá desde la izquierda hacia su posición original */
-@keyframes slideIn {
-    100% {
-        transform: translateX(0); /* Se mueve a su posición original */
-    }
-}
-
 #showC.showcase-img {
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     transform: translateX(-100%); /* Empieza fuera de la pantalla a la izquierda */
+    transition: transform 1s ease;
 }
 
 #showC.showcase-img.is-visible{
-    animation: slideIn 1s ease-out forwards;
+    transform: translateX(0);
 }
 
 @media (max-width: 991px) {
