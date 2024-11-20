@@ -42,9 +42,6 @@
 
 /* La animación slideIn se moverá desde la izquierda hacia su posición original */
 @keyframes slideIn {
-    0% {
-        transform: translateX(-100%); /* Empieza fuera de la pantalla a la izquierda */
-    }
     100% {
         transform: translateX(0); /* Se mueve a su posición original */
     }
@@ -55,7 +52,7 @@
     border-bottom-right-radius: 30px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    
+    transform: translateX(-100%); /* Empieza fuera de la pantalla a la izquierda */
 }
 
 #showC.showcase-img.is-visible{
