@@ -38,6 +38,17 @@
     border-bottom-left-radius: 30px;
     overflow: hidden;
     /* Para asegurar que la imagen no sobresalga */
+    animation: slideIn 1s ease-out forwards; /* Llamamos a la animación */
+}
+
+/* La animación slideIn se moverá desde la izquierda hacia su posición original */
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%); /* Empieza fuera de la pantalla a la izquierda */
+    }
+    100% {
+        transform: translateX(0); /* Se mueve a su posición original */
+    }
 }
 
 #showC.showcase-img {
