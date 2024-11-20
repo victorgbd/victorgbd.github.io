@@ -55,6 +55,10 @@
     border-bottom-right-radius: 30px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
+    
+}
+
+#showC.showcase-img.is-visible{
     animation: slideIn 1s ease-out forwards;
 }
 
