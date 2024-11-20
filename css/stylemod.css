@@ -33,12 +33,11 @@
     /* Cambia a tu color preferido */
 }
 
- .showcase-img {
+.showcase-img {
             border-top-left-radius: 30px;
             border-bottom-left-radius: 30px;
             overflow: hidden;
-            position: relative;
-            animation: slideIn 1s ease-out forwards; /* Animación */
+            
         }
 
 /* La animación slideIn se moverá desde la izquierda hacia su posición original */
@@ -56,6 +55,7 @@
     border-bottom-right-radius: 30px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
+    animation: slideIn 1s ease-out forwards;
 }
 
 @media (max-width: 991px) {
