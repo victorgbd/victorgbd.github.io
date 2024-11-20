@@ -38,8 +38,8 @@
             border-bottom-left-radius: 30px;
             overflow: hidden;
             opacity: 0; /* Inicialmente invisible */
-            transform: translateX(-100%); /* Empieza fuera de la pantalla a la izquierda */
-            transition: transform 1s ease, opacity 1s ease; /* Animación suave */
+            /*transform: translateX(-100%); /* Empieza fuera de la pantalla a la izquierda */
+            /*transition: transform 1s ease, opacity 1s ease; /* Animación suave */
         }
 
 #showC.showcase-img {
@@ -51,8 +51,16 @@
     /*transition: transform 1s ease;*/
 }
 
-#showC.showcase-img.is-visible{
-    transform: translateX(0);
+#showC {
+    width: 100%;
+    height: 200px;  /* Altura opcional, ajusta según tu diseño */
+    background-color: #086AD8;  /* Color de fondo, o usa el tuyo */
+    transform: translateX(-100%);  /* Empieza fuera de la pantalla a la izquierda */
+    transition: transform 1s ease;  /* Animación de 1 segundo para moverlo */
+}
+
+#showC.is-visible {
+    transform: translateX(0);  /* Se mueve hacia su posición inicial */
 }
 
 @media (max-width: 991px) {
