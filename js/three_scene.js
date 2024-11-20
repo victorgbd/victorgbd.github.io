@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(animate);
         }
 
-        animate();
+        
 
         // Botones de rotación
         document.getElementById('rotateLeft').addEventListener('click', () => {
@@ -104,5 +104,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         startAutoRotate(); // Iniciar rotación automática al cargar
+
+        // Detectar cuando la pestaña está visible o no
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopAutoRotate();  // Detener rotación automática cuando la pestaña no es visible
+            } else {
+                startAutoRotate(); // Reanudar rotación automática cuando la pestaña se vuelve visible
+            }
+        });
+        animate();
     });
 });
