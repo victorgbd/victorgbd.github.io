@@ -6,30 +6,20 @@
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
 // Seleccionar el elemento
-document.addEventListener("DOMContentLoaded", function() {
-    // Intenta obtener el elemento
-    const showcaseImg = document.getElementById('showC');
-    
-    // Verifica si el elemento realmente existe
-    if (showcaseImg) {
-        // Crear un observador de intersección
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Cuando el elemento entra en el viewport, agrega la clase 'is-visible'
-                    entry.target.classList.add('is-visible');
-                    
-                    // Deja de observar una vez que la animación ha sido activada
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { 
-            threshold: 0.5  // 50% del elemento debe ser visible para activar la animación
-        });
+const showcaseImg = document.getElementById('showC');
 
-        // Iniciar la observación
-        observer.observe(showcaseImg);
-    } else {
-        console.error("El elemento con el ID 'showC' no se encuentra en el DOM.");
-    }
-});
+// Crear un observador de intersección
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Cuando el elemento entra en el viewport, agregar la clase
+            entry.target.classList.add('is-visible');
+            // Dejar de observar el elemento una vez que la animación se haya ejecutado
+            observer.unobserve(entry.target);
+            console.log("ua bebecita")
+        }
+    });
+}, { threshold: 0.5 }); // Umbral de visibilidad (0.5 significa que el 50% del elemento debe ser visible)
+
+// Observar el elemento
+observer.observe(showcaseImg);
