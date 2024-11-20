@@ -37,7 +37,9 @@
             border-top-left-radius: 30px;
             border-bottom-left-radius: 30px;
             overflow: hidden;
-            
+            opacity: 0; /* Inicialmente invisible */
+            transform: translateX(-100%); /* Empieza fuera de la pantalla a la izquierda */
+            transition: transform 1s ease, opacity 1s ease; /* Animación suave */
         }
 
 #showC.showcase-img {
@@ -45,8 +47,8 @@
     border-bottom-right-radius: 30px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    transform: translateX(-100%); /* Empieza fuera de la pantalla a la izquierda */
-    transition: transform 1s ease;
+    /*transform: translateX(-100%); /* Empieza fuera de la pantalla a la izquierda */
+    /*transition: transform 1s ease;*/
 }
 
 #showC.showcase-img.is-visible{
