@@ -49,7 +49,7 @@
     border-bottom-left-radius: 30px;
     overflow: hidden;
     opacity: 0; /* Inicialmente invisible */
-    transform: translateX(50%); /* Empieza fuera de la pantalla a la izquierda */
+    transform: translateX(-50%); /* Empieza fuera de la pantalla a la izquierda */
     transition: transform 1s ease, opacity 1s ease; /* Animación suave */
 }
 
@@ -58,8 +58,7 @@
     opacity: 1; /* Se hace visible */
 }
 
-#showC {
-   
+#showC {  
     transform: translateX(100%);  /* Empieza fuera de la pantalla a la izquierda */
     transition: transform 1s ease;  /* Animación de 1 segundo para moverlo */
 }
