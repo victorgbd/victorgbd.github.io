@@ -59,7 +59,7 @@
 }
 
 #showC {  
-    transform: translateX(100%);  /* Empieza fuera de la pantalla a la izquierda */
+    transform: translateX(-100%);  /* Empieza fuera de la pantalla a la izquierda */
     transition: transform 1s ease;  /* Animación de 1 segundo para moverlo */
 }
 
