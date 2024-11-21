@@ -1,87 +1,90 @@
 @charset "UTF-8";
 
 .bg-theme2 {
-    background-color: #086AD8;
+  background-color: #086ad8;
 }
 
 .controls {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-    display: flex;
-    flex-direction: row;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
 }
-
 
 .btn,
 .btn:active,
 .btn:focus,
 .btn:hover {
-    border: none !important;
-
+  border: none !important;
 }
 
 .custom-footer {
-    background-color: #343a40;
-    /* Cambia el color aquí */
+  background-color: #343a40;
+  /* Cambia el color aquí */
 }
 
 .footer .list-inline-item a {
-    color: #ffffff;
-    /* Cambia a tu color preferido */
+  color: #ffffff;
+  /* Cambia a tu color preferido */
 }
 
-
-
-#showC.showcase-img {
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+#showB.showcase-img {
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
-
-
 
 .showcase-img {
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    overflow: hidden;
-    opacity: 0; /* Inicialmente invisible */
-    transform: translateX(100%); /* Empieza fuera de la pantalla a la izquierda */
-    transition: transform 1s ease, opacity 1s ease; /* Animación suave */
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  overflow-x: hidden;
+  opacity: 0;
 }
 
-.showcase-img.is-visible {
-    transform: translateX(0); /* Se mueve hacia su posición inicial */
-    opacity: 1; /* Se hace visible */
+@keyframes entrar {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.entrar-salir {
+  animation: entrar 3s ease forwards;
 }
 
-#showC {  
-    overflow: hidden;
-    opacity: 0; /* Inicialmente invisible */
-    transform: translateX(-100%);  /* Empieza fuera de la pantalla a la izquierda */
-    transition: transform 1s ease, opacity 1s ease; /* Animación suave */
+@keyframes entrar2 {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
-
-#showC.is-visible {
-    transform: translateX(0);  /* Se mueve hacia su posición inicial */
-    opacity: 1; /* Se hace visible */
+.entrar-salir2 {
+  animation: entrar2 3s ease forwards;
 }
 
 @media (max-width: 991px) {
-    .showcase-img {
-        border-radius: 30px !important;
-        margin: 0 !important;
-    }
+  .showcase-img {
+    border-radius: 30px !important;
+    margin: 0 !important;
+  }
 
-    /* Aplica la clase rounded de Bootstrap */
-    .showcase-img-wrapper {
-        padding: 0 20px !important;
-    }
+  /* Aplica la clase rounded de Bootstrap */
+  .showcase-img-wrapper {
+    padding: 0 20px !important;
+  }
 }
 
 button {
-    margin: 5px;
+  margin: 5px;
 }
