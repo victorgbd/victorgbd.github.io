@@ -5,18 +5,20 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
-const showcaseImg = document.getElementById('showC');
-    
-if (showcaseImg) {
+const showcaseImgs = document.querySelectorAll('.showcase-img');
+
+if (showcaseImgs.length > 0) {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             console.log(entry.isIntersecting);  // Verifica si está entrando en el viewport
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
+                observer.unobserve(entry.target); // Deja de observar una vez que es visible
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1 });  // Umbral para la visibilidad, 10% del elemento visible
 
-    observer.observe(showcaseImg);
+    showcaseImgs.forEach(img => {
+        observer.observe(img);
+    });
 }
