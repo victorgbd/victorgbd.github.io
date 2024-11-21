@@ -45,7 +45,7 @@
 
 
 .showcase-img {
-    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
     overflow: hidden;
     opacity: 0; /* Inicialmente invisible */
