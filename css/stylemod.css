@@ -59,12 +59,15 @@
 }
 
 #showC {  
+    overflow: hidden;
+    opacity: 0; /* Inicialmente invisible */
     transform: translateX(-100%);  /* Empieza fuera de la pantalla a la izquierda */
-    transition: transform 1s ease;  /* Animación de 1 segundo para moverlo */
+    transition: transform 1s ease, opacity 1s ease; /* Animación suave */
 }
 
 #showC.is-visible {
     transform: translateX(0);  /* Se mueve hacia su posición inicial */
+    opacity: 1; /* Se hace visible */
 }
 
 @media (max-width: 991px) {
