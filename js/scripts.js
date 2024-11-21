@@ -16,7 +16,7 @@ if (showcaseImgs.length > 0) {
                 observer.unobserve(entry.target); // Deja de observar una vez que es visible
             }
         });
-    }, { threshold: 0.1 });  // Umbral para la visibilidad, 10% del elemento visible
+    }, { threshold: 0.5 });  // Umbral para la visibilidad, 10% del elemento visible
 
     showcaseImgs.forEach(img => {
         observer.observe(img);
