@@ -73,6 +73,41 @@
   animation: entrar2 3s ease forwards;
 }
 
+/* Animación inversa */
+@keyframes entrarInverse {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.entrar-salir-inverse {
+  animation: entrarInverse 3s ease forwards;
+}
+
+@keyframes entrar2Inverse {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.entrar-salir2-inverse {
+  animation: entrar2Inverse 3s ease forwards;
+}
+
+.animating {
+  pointer-events: none; /* Desactiva los eventos mientras la animación se está ejecutando */
+}
+
 @media (max-width: 991px) {
   .showcase-img {
     border-radius: 30px !important;
