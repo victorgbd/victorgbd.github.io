@@ -42,6 +42,8 @@
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   overflow-x: hidden;
+}
+.divop {
   opacity: 0;
 }
 
