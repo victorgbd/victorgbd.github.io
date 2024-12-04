@@ -1,19 +1,30 @@
 const escena = new THREE.Scene();
+let light1 = new THREE.AmbientLight(0xffffff, 0.5);
+escena.add(light1);
+const light2 = new THREE.AmbientLight(0xd4d4d4);
+escena.add(light2);
 const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 const container = document.getElementById("canva");
+container.style.display = "none";
 
 renderer.setClearColor(0xffffff);
-container.appendChild(renderer.domElement);
 
 const loader = document.getElementById("loader"); // Elemento de carga
+const loadingManager = new THREE.LoadingManager();
+// loadingManager.onLoad = function () {
+//   // Ocultar el loader y mostrar la escena
+//   loader.style.display = "none";
+// };
 
-const textureLoader = new THREE.TextureLoader();
+container.appendChild(renderer.domElement);
+
+const textureLoader = new THREE.TextureLoader(loadingManager);
 
 // Mostrar el loader mientras se carga la textura
 textureLoader.load(
   "assets/img/ad.png",
-  (texture) => {
+  async (texture) => {
     // Cuando se cargue la textura
     const materiales = [
       new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
@@ -122,9 +133,14 @@ textureLoader.load(
         startAutoRotate(); // Reanudar rotación automática cuando la pestaña se vuelve visible
       }
     });
+    console.log("Inicio");
 
+    await sleep(2000); // Pausa de 2 segundos
+
+    console.log("Después de 2 segundos");
     // Ocultar el loader y mostrar la escena
     loader.style.display = "none";
+    container.style.display = "block";
     animate();
   },
   undefined,
@@ -133,3 +149,7 @@ textureLoader.load(
     console.error("Error cargando textura:", error);
   }
 );
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
