@@ -11,28 +11,44 @@ container.style.display = "none";
 renderer.setClearColor(0xffffff);
 
 const loader = document.getElementById("loader"); // Elemento de carga
-const loadingManager = new THREE.LoadingManager();
-// loadingManager.onLoad = function () {
-//   // Ocultar el loader y mostrar la escena
-//   loader.style.display = "none";
-// };
 
 container.appendChild(renderer.domElement);
 
-const textureLoader = new THREE.TextureLoader(loadingManager);
+const textureLoader = new THREE.TextureLoader();
 
-// Mostrar el loader mientras se carga la textura
-textureLoader.load(
-  "assets/img/ad.png",
-  async (texture) => {
-    // Cuando se cargue la textura
+// Función para cargar una textura de manera asíncrona
+const loadTexture = (url) => {
+  return new Promise((resolve, reject) => {
+    textureLoader.load(url, resolve, undefined, reject);
+  });
+};
+
+// Cargar todas las texturas de forma sincronizada
+Promise.all([
+  loadTexture("assets/img/ad.png"),
+  loadTexture("assets/img/ad2.jpg"),
+  loadTexture("assets/img/ad3.jpg"),
+  loadTexture("assets/img/ad4.jpg"),
+])
+  .then(async ([texture1, texture2, texture3, texture4]) => {
+    // Verificar si alguna de las texturas es undefined
+    if (
+      ![texture1, texture2, texture3, texture4].every(
+        (texture) => texture !== undefined
+      )
+    ) {
+      console.error("Error: Una o más texturas no se cargaron correctamente.");
+      loader.innerText = "Error al cargar las texturas.";
+      return;
+    }
+    // Una vez que todas las texturas estén cargadas, crea los materiales
     const materiales = [
-      new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
-      new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
-      new THREE.MeshBasicMaterial({ color: 0xff0000 }),
-      new THREE.MeshBasicMaterial({ color: 0x0000ff }),
-      new THREE.MeshBasicMaterial({ color: 0xffff00 }),
-      new THREE.MeshBasicMaterial({ map: texture }),
+      new THREE.MeshBasicMaterial({ map: texture1 }), // Cara 1
+      new THREE.MeshBasicMaterial({ map: texture2 }), // Cara 2
+      new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // Cara 3 (Textura 1)
+      new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // Cara 4 (Textura 2)
+      new THREE.MeshBasicMaterial({ map: texture3 }), // Cara 5 (Textura 3)
+      new THREE.MeshBasicMaterial({ map: texture4 }), // Cara 6 (Textura 4)
     ];
 
     const cubo = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), materiales); // Cubo inicial de 1x1x1
@@ -133,6 +149,7 @@ textureLoader.load(
         startAutoRotate(); // Reanudar rotación automática cuando la pestaña se vuelve visible
       }
     });
+
     console.log("Inicio");
 
     await sleep(2000); // Pausa de 2 segundos
@@ -142,13 +159,11 @@ textureLoader.load(
     loader.style.display = "none";
     container.style.display = "block";
     animate();
-  },
-  undefined,
-  (error) => {
-    loader.innerText = "Error al cargar la textura.";
-    console.error("Error cargando textura:", error);
-  }
-);
+  })
+  .catch((error) => {
+    console.error("Error al cargar las texturas:", error);
+    loader.innerText = "Error al cargar las texturas.";
+  });
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
