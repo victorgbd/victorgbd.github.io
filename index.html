@@ -125,7 +125,7 @@
     <div class="container mt-5" style="margin-bottom: 40px">
       <div class="card-body">
         <div class="d-flex justify-content-center position-relative">
-          <div style="height: 450px; color: #fff">
+          <div style="height: 450px; color: #fff; align-items: center">
             <div class="loader" id="loader"></div>
           </div>
           <div
@@ -134,28 +134,17 @@
             style="height: 450px; position: relative; color: #fff"
           ></div>
 
-          <div
-            class="position-absolute d-none d-lg-flex"
-            style="
-              top: 50%;
-              left: 50%;
-              width: 100%;
-              max-width: 60%;
-              transform: translate(-50%, -50%);
-              z-index: 10;
-              justify-content: space-between;
-            "
-          >
+          <div class="position-absolute d-none d-lg-flex" id="container-hidden">
             <button
               id="rotateLeft"
-              class="btn"
+              class="btn hidden-button"
               style="border-radius: 50%; height: 75px; width: 75px"
             >
               <i class="bi bi-arrow-left-circle fs-2"></i>
             </button>
             <button
               id="rotateRight"
-              class="btn"
+              class="btn hidden-button"
               style="border-radius: 50%; height: 75px; width: 75px"
             >
               <i class="bi bi-arrow-right-circle fs-2"></i>
@@ -354,7 +343,6 @@
         </div>
       </div>
     </section>
-    <!--inicio el grid -->
     <div class="container mt-5 mb-5">
       <!-- Fila del grid -->
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
@@ -452,7 +440,6 @@
         </div>
       </div>
     </div>
-    <!--fin el grid -->
 
     <!-- Empleados-->
     <section class="testimonials text-center bg-light">
