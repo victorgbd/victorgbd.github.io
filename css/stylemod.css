@@ -31,96 +31,8 @@
   /* Cambia a tu color preferido */
 }
 
-#showB.showcase-img {
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-}
 
-.showcase-img {
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
-  overflow-x: hidden;
-}
-.divop {
-  opacity: 0;
-}
 
-@keyframes entrar {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-.entrar-salir {
-  animation: entrar 3s ease forwards;
-}
-
-@keyframes entrar2 {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-.entrar-salir2 {
-  animation: entrar2 3s ease forwards;
-}
-
-/* Animación inversa */
-@keyframes entrarInverse {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-}
-
-.entrar-salir-inverse {
-  animation: entrarInverse 3s ease forwards;
-}
-
-@keyframes entrar2Inverse {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-}
-
-.entrar-salir2-inverse {
-  animation: entrar2Inverse 3s ease forwards;
-}
-
-.animating {
-  pointer-events: none; /* Desactiva los eventos mientras la animación se está ejecutando */
-}
-
-@media (max-width: 991px) {
-  .showcase-img {
-    border-radius: 30px !important;
-    margin: 0 !important;
-  }
-
-  /* Aplica la clase rounded de Bootstrap */
-  .showcase-img-wrapper {
-    padding: 0 20px !important;
-  }
-}
 
 button {
   margin: 5px;
@@ -144,87 +56,86 @@ button {
   border: 8px solid #514b82;
   animation: l20-1 0.8s infinite linear alternate, l20-2 1.6s infinite linear;
 }
+
 @keyframes l20-1 {
   0% {
     clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
   }
+
   12.5% {
-    clip-path: polygon(
-      50% 50%,
-      0 0,
-      50% 0%,
-      100% 0%,
-      100% 0%,
-      100% 0%,
-      100% 0%
-    );
+    clip-path: polygon(50% 50%,
+        0 0,
+        50% 0%,
+        100% 0%,
+        100% 0%,
+        100% 0%,
+        100% 0%);
   }
+
   25% {
-    clip-path: polygon(
-      50% 50%,
-      0 0,
-      50% 0%,
-      100% 0%,
-      100% 100%,
-      100% 100%,
-      100% 100%
-    );
+    clip-path: polygon(50% 50%,
+        0 0,
+        50% 0%,
+        100% 0%,
+        100% 100%,
+        100% 100%,
+        100% 100%);
   }
+
   50% {
-    clip-path: polygon(
-      50% 50%,
-      0 0,
-      50% 0%,
-      100% 0%,
-      100% 100%,
-      50% 100%,
-      0% 100%
-    );
+    clip-path: polygon(50% 50%,
+        0 0,
+        50% 0%,
+        100% 0%,
+        100% 100%,
+        50% 100%,
+        0% 100%);
   }
+
   62.5% {
-    clip-path: polygon(
-      50% 50%,
-      100% 0,
-      100% 0%,
-      100% 0%,
-      100% 100%,
-      50% 100%,
-      0% 100%
-    );
+    clip-path: polygon(50% 50%,
+        100% 0,
+        100% 0%,
+        100% 0%,
+        100% 100%,
+        50% 100%,
+        0% 100%);
   }
+
   75% {
-    clip-path: polygon(
-      50% 50%,
-      100% 100%,
-      100% 100%,
-      100% 100%,
-      100% 100%,
-      50% 100%,
-      0% 100%
-    );
+    clip-path: polygon(50% 50%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        50% 100%,
+        0% 100%);
   }
+
   100% {
-    clip-path: polygon(
-      50% 50%,
-      50% 100%,
-      50% 100%,
-      50% 100%,
-      50% 100%,
-      50% 100%,
-      0% 100%
-    );
+    clip-path: polygon(50% 50%,
+        50% 100%,
+        50% 100%,
+        50% 100%,
+        50% 100%,
+        50% 100%,
+        0% 100%);
   }
 }
+
 @keyframes l20-2 {
   0% {
     transform: scaleY(1) rotate(0deg);
   }
+
   49.99% {
     transform: scaleY(1) rotate(135deg);
   }
+
   50% {
     transform: scaleY(-1) rotate(0deg);
   }
+
   100% {
     transform: scaleY(-1) rotate(-135deg);
   }
@@ -241,11 +152,20 @@ button {
   justify-content: space-between;
   align-items: center;
 }
+
 .hidden-button {
-  opacity: 0; /* Oculta el botón */
+  opacity: 0;
+  /* Oculta el botón */
   transition: opacity 0.3s ease;
 }
 
 #container-hidden:hover .hidden-button {
-  opacity: 1; /* Muestra el botón al pasar el mouse */
+  opacity: 1;
+  /* Muestra el botón al pasar el mouse */
+}
+
+.divop {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
