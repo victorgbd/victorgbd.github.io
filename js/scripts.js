@@ -3,7 +3,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 gsap.utils.toArray(".divop").forEach((el, index) => {
 
-  let direction = index % 2 === 0 ? -200 : 200;
+  let direction = index % 2 === 0 ? -500 : 500;
 
   let tl = gsap.timeline({
     scrollTrigger: {
